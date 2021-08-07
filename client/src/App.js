@@ -1,15 +1,15 @@
 import './App.css'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Chat from './components/Chat'
+//import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Login from './components/Login'
 import Join from './components/Join'
+import { useState } from 'react'
 
 function App() {
+  const [id, setId] = useState('')
   return (
     <div className='App'>
-      <Router>
-        <Route path='/' exact component={Join}></Route>{' '}
-        <Route path='/chat' exact component={Chat}></Route>{' '}
-      </Router>
+      {id}
+      <Login onIdSubmit={setId} />
     </div>
   )
 }
