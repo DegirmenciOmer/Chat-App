@@ -1,11 +1,14 @@
 //https://youtu.be/ZwFA3YMfkoc?t=4150
+//https://youtu.be/tBr-PybP_9c?t=2092
+//https://youtu.be/tBr-PybP_9c?t=897
 import express from 'express'
 import { Server, Socket } from 'socket.io'
 import http from 'http'
 import { router } from './router.js'
-import { addUser, getUser } from './users.js'
+import { addUser, getUser, removeUser } from './users.js'
 
 const app = express()
+app.use(router)
 const server = http.createServer(app)
 const corsOptions = {
   cors: true,
@@ -15,33 +18,54 @@ const io = new Server(server, corsOptions)
 
 const PORT = process.env.PORT || 5000
 
-io.on('connection', (socket) => {
-  console.log('We have a new connection!!!')
+app.use(router)
 
+io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room })
-    if (error) {
-      return callback(error)
-    }
+
+    if (error) return callback(error)
+
+    socket.join(user.room)
+
     socket.emit('message', {
       user: 'admin',
-      text: `${user.name}, welcome to the room${user.room}!`,
+      text: `${user.name}, welcome to room ${user.room}.`,
     })
     socket.broadcast
       .to(user.room)
       .emit('message', { user: 'admin', text: `${user.name} has joined!` })
-    socket.join(user.room)
+
+    io.to(user.room).emit('roomData', {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    })
+
     callback()
   })
+
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id)
+
     io.to(user.room).emit('message', { user: user.name, text: message })
+
     callback()
   })
 
-  socket.on('disconnect', () => console.log('User has left!!!'))
-})
+  socket.on('disconnect', () => {
+    const user = removeUser(socket.id)
 
-app.use(router)
+    if (user) {
+      io.to(user.room).emit('message', {
+        user: 'Admin',
+        text: `${user.name} has left.`,
+      })
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      })
+    }
+  })
+})
 
 server.listen(PORT, () => console.log(`Server is running on the port ${PORT}`))
