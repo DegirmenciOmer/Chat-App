@@ -4,7 +4,7 @@ import Login from './components/Login'
 import Join from './components/Join'
 import useLocalStorage from './hooks/useLocalStorage'
 import Dashboard from './components/Dashboard'
-import { ContactsProvider } from './contexts/ContactsContext'
+import { ContactsProvider } from './contexts/ContactsProvider'
 
 function App() {
   const [id, setId] = useLocalStorage('id')
