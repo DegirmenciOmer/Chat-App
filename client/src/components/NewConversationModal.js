@@ -1,24 +1,26 @@
 import React, { useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import { useContacts } from '../contexts/ContactsProvider'
+import { useConversations } from '../contexts/ConversationsProvider'
 
 const NewConversationModal = ({ closeModal }) => {
   const [selectedContactIds, setSelectedContactIds] = useState([])
   const { contacts } = useContacts()
+  const { createConversation } = useConversations()
 
   function handleSubmit(e) {
     e.preventDefault()
-    //createConversation(selectedContactIds)
+    createConversation(selectedContactIds)
     closeModal()
     console.log('FormSubmit')
   }
 
-  function handleCheckboxChange(id) {
+  function handleCheckboxChange(contactId) {
     setSelectedContactIds((prevSlctIds) => {
-      if (prevSlctIds.includes(id)) {
-        return prevSlctIds.filter((prevId) => id !== prevId)
+      if (prevSlctIds.includes(contactId)) {
+        return prevSlctIds.filter((prevId) => contactId !== prevId)
       } else {
-        return [...prevSlctIds, id]
+        return [...prevSlctIds, contactId]
       }
     })
   }
