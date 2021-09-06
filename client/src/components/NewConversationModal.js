@@ -1,41 +1,42 @@
 import React, { useState } from 'react'
-import { Button, Form, Modal } from 'react-bootstrap'
+import { Modal, Form, Button } from 'react-bootstrap'
 import { useContacts } from '../contexts/ContactsProvider'
 import { useConversations } from '../contexts/ConversationsProvider'
 
-const NewConversationModal = ({ closeModal }) => {
+export default function NewConversationModal({ closeModal }) {
   const [selectedContactIds, setSelectedContactIds] = useState([])
   const { contacts } = useContacts()
   const { createConversation } = useConversations()
 
   function handleSubmit(e) {
     e.preventDefault()
+
     createConversation(selectedContactIds)
     closeModal()
-    console.log('FormSubmit')
   }
 
   function handleCheckboxChange(contactId) {
-    setSelectedContactIds((prevSlctIds) => {
-      if (prevSlctIds.includes(contactId)) {
-        return prevSlctIds.filter((prevId) => contactId !== prevId)
+    setSelectedContactIds((prevSelectedContactIds) => {
+      if (prevSelectedContactIds.includes(contactId)) {
+        return prevSelectedContactIds.filter((prevId) => {
+          return contactId !== prevId
+        })
       } else {
-        return [...prevSlctIds, contactId]
+        return [...prevSelectedContactIds, contactId]
       }
     })
   }
+
   return (
     <>
-      <Modal.Header closeButton>
-        <Modal.Title>Create Conversation</Modal.Title>
-      </Modal.Header>
+      <Modal.Header closeButton>Create Conversation</Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           {contacts.map((contact) => (
             <Form.Group controlId={contact.id} key={contact.id}>
               <Form.Check
-                value={selectedContactIds.includes(contact.id)}
                 type='checkbox'
+                value={selectedContactIds.includes(contact.id)}
                 label={contact.name}
                 onChange={() => handleCheckboxChange(contact.id)}
               />
@@ -47,5 +48,3 @@ const NewConversationModal = ({ closeModal }) => {
     </>
   )
 }
-
-export default NewConversationModal

@@ -23,6 +23,7 @@ export function ConversationsProvider({ id, children }) {
 
   const addMessageToConversation = useCallback(
     ({ recipients, text, sender }) => {
+      console.log({ recipients, text, sender })
       setConversations((prevConversations) => {
         let madeChange = false
         const newMessage = { sender, text }
@@ -39,6 +40,8 @@ export function ConversationsProvider({ id, children }) {
         })
 
         if (madeChange) {
+          console.log([newMessage])
+          console.log(newMessage)
           return newConversations
         } else {
           return [...prevConversations, { recipients, messages: [newMessage] }]
@@ -73,9 +76,11 @@ export function ConversationsProvider({ id, children }) {
 
     const messages = conversation.messages.map((message) => {
       const contact = contacts.find((contact) => {
+        console.log(message, contact)
         return contact.id === message.sender
       })
       const name = (contact && contact.name) || message.sender
+      console.log({ name })
       const fromMe = id === message.sender
       return { ...message, senderName: name, fromMe }
     })
