@@ -10,6 +10,7 @@ export default function OpenConversation() {
       node.scrollIntoView({ smooth: true })
     }
   }, [])
+
   const { sendMessage, selectedConversation } = useConversations()
 
   function handleSubmit(e) {
