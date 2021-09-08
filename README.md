@@ -11,9 +11,14 @@ A chat application which can be used not only for private messaging, but also as
 - Users can login with their IDs if they already have, or just generate a new one by clicking 'Generate New Id'
 
 ## Contacts
+
+<img src="./client/public/assets/New-Contact.png" width="400" />
+
 - Users need the IDs from other users to add them to the Contacts list.
 
 ## Conversations
+<img src="./client/public/assets/Group-messaging.png" width="400" />
+
 - Each user needs to add the users in the conversation. Then they can start chatting.
 
 ## Technologies 
