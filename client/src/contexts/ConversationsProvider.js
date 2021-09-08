@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { useContacts } from './ContactsProvider'
-//import { useSocket } from './SocketProvider'
+import { useSocket } from './SocketProvider'
 
 const ConversationsContext = React.createContext()
 
@@ -13,7 +13,7 @@ export function ConversationsProvider({ id, children }) {
   const [conversations, setConversations] = useLocalStorage('conversations', [])
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0)
   const { contacts } = useContacts()
-  //const socket = useSocket()
+  const socket = useSocket()
 
   function createConversation(recipients) {
     setConversations((prevConversations) => {
@@ -22,8 +22,8 @@ export function ConversationsProvider({ id, children }) {
   }
 
   const addMessageToConversation = useCallback(
+    //useCallback is used in order to prevent re-render addMessageToConversation in useEffect as dependency
     ({ recipients, text, sender }) => {
-      console.log({ recipients, text, sender })
       setConversations((prevConversations) => {
         let madeChange = false
         const newMessage = { sender, text }
@@ -40,8 +40,6 @@ export function ConversationsProvider({ id, children }) {
         })
 
         if (madeChange) {
-          console.log([newMessage])
-          console.log(newMessage)
           return newConversations
         } else {
           return [...prevConversations, { recipients, messages: [newMessage] }]
@@ -51,16 +49,16 @@ export function ConversationsProvider({ id, children }) {
     [setConversations]
   )
 
-  // useEffect(() => {
-  //   if (socket == null) return
+  useEffect(() => {
+    if (socket == null) return
 
-  //   socket.on('receive-message', addMessageToConversation)
+    socket.on('receive-message', addMessageToConversation)
 
-  //   return () => socket.off('receive-message')
-  // }, [socket, addMessageToConversation])
+    return () => socket.off('receive-message')
+  }, [socket, addMessageToConversation])
 
   function sendMessage(recipients, text) {
-    //socket.emit('send-message', { recipients, text })
+    socket.emit('send-message', { recipients, text })
 
     addMessageToConversation({ recipients, text, sender: id })
   }
@@ -76,11 +74,9 @@ export function ConversationsProvider({ id, children }) {
 
     const messages = conversation.messages.map((message) => {
       const contact = contacts.find((contact) => {
-        console.log(message, contact)
         return contact.id === message.sender
       })
       const name = (contact && contact.name) || message.sender
-      console.log({ name })
       const fromMe = id === message.sender
       return { ...message, senderName: name, fromMe }
     })

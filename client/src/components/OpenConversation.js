@@ -5,10 +5,12 @@ import { useConversations } from '../contexts/ConversationsProvider'
 export default function OpenConversation() {
   const [text, setText] = useState('')
   const setRef = useCallback((node) => {
+    //1:22:00 why useCallback is used
     if (node) {
       node.scrollIntoView({ smooth: true })
     }
   }, [])
+
   const { sendMessage, selectedConversation } = useConversations()
 
   function handleSubmit(e) {
@@ -67,9 +69,7 @@ export default function OpenConversation() {
               onChange={(e) => setText(e.target.value)}
               style={{ height: '75px', resize: 'none' }}
             />
-            <InputGroup.Append>
-              <Button type='submit'>Send</Button>
-            </InputGroup.Append>
+            <Button type='submit'>Send</Button>
           </InputGroup>
         </Form.Group>
       </Form>
