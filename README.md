@@ -6,16 +6,13 @@ A chat application which can be used not only for private messaging, but also as
 
 ## Login Page
 
-1. Users can login with their IDs if they already have, or just generate a new one by clicking 'Generate New Id'
+- Users can login with their IDs if they already have, or just generate a new one by clicking 'Generate New Id'
 
 ## Contacts
-1. Users need the IDs from other users to add them to Contacts list.
+- Users need the IDs from other users to add them to the Contacts list.
 
-
-
-
-
-
+## Conversations
+- Each user needs to add the users in the conversation. Then they can start chatting.
 
 ## Technologies 
 - Backend: NodeJS, Express, Socket.io
