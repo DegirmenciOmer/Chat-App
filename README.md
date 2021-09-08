@@ -6,6 +6,8 @@ A chat application which can be used not only for private messaging, but also as
 
 ## Login Page
 
+<img src="./client/public/assets/Login.png" width="400" />
+
 - Users can login with their IDs if they already have, or just generate a new one by clicking 'Generate New Id'
 
 ## Contacts
