@@ -1,6 +1,3 @@
-//https://youtu.be/ZwFA3YMfkoc?t=4150
-//https://youtu.be/tBr-PybP_9c?t=2092
-//https://youtu.be/tBr-PybP_9c?t=897
 import express from 'express'
 import { Server, Socket } from 'socket.io'
 import http from 'http'
