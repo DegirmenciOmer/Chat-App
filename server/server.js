@@ -12,7 +12,7 @@ const corsOptions = {
 }
 const io = new Server(server, corsOptions)
 
-const PORT = process.env.PORT || 5000
+export const PORT = process.env.PORT || 5000
 
 app.use(router)
 
