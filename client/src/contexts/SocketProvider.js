@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 
 const SocketContext = React.createContext()
 
-const DEV_URL = 'http://localhost:5000/'
+//const DEV_URL = 'http://localhost:5000/'
 const PRODUCTION_URL = 'https://dry-thicket-16746.herokuapp.com/'
 
 export function useSocket() {

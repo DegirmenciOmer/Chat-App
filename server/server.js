@@ -8,7 +8,7 @@ app.use(router)
 const server = http.createServer(app)
 const corsOptions = {
   cors: true,
-  origins: ['http://localhost:3000'],
+  origins: ['http://localhost:3000', 'https://fun-chat-omer.netlify.app/'],
 }
 const io = new Server(server, corsOptions)
 
