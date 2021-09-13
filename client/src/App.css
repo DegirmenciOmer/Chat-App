@@ -44,3 +44,10 @@
 .warning{
   color:red;
 }
+
+.menu-btn{
+  /* writing-mode: vertical-r !important;
+  text-orientation: upright !important; */
+  text-orientation: upright !important;
+  width: 30px;
+}

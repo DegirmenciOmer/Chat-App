@@ -28,11 +28,7 @@ export default function Sidebar({ id }) {
 
   return (
     <>
-      <Button
-        style={{ width: '30px' }}
-        variant='primary'
-        onClick={toggleSideBar}
-      >
+      <Button className='menu-btn ' variant='primary' onClick={toggleSideBar}>
         Menu
       </Button>
       <Offcanvas
