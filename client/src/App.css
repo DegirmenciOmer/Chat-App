@@ -37,6 +37,10 @@
   }
 }
 
-.left-tab-container{
+/* .left-tab-container{
   border-right: #ced4da solid 1px !important;
+} */
+
+.warning{
+  color:red;
 }

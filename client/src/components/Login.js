@@ -15,12 +15,18 @@ export default function Login({ onIdSubmit }) {
     onIdSubmit(uuidV4())
   }
 
+  //xs={12} sm={8} lg={4}
+
   return (
     <Container
-      className='align-items-center d-flex'
+      className='align-items-center d-flex justify-content-center'
       style={{ height: '100vh' }}
     >
-      <Form onSubmit={handleSubmit} className=' mx-auto  w-50'>
+      <Form
+        onSubmit={handleSubmit}
+        md='8'
+        className='align-items-center d-flex flex-column '
+      >
         <Form.Group className='mb-2'>
           <Form.Control
             placeholder='Enter Your Id'
@@ -30,9 +36,11 @@ export default function Login({ onIdSubmit }) {
           />
         </Form.Group>
         <ButtonGroup className='w-100 ' aria-label='Basic example'>
-          <Button type='submit'>Login</Button>
-          <Button onClick={createNewId} variant='secondary'>
-            Create A New Id
+          <Button className='w-50' type='submit'>
+            Login
+          </Button>
+          <Button className='w-50' onClick={createNewId} variant='secondary'>
+            New Id
           </Button>
         </ButtonGroup>
       </Form>

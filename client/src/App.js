@@ -9,7 +9,7 @@ import { ConversationsProvider } from './contexts/ConversationsProvider'
 import { SocketProvider } from './contexts/SocketProvider'
 
 function App() {
-  const [id, setId] = useLocalStorage('id')
+  const [id, setId] = useLocalStorage('id', null)
   const dashboard = (
     <SocketProvider id={id}>
       <ContactsProvider>

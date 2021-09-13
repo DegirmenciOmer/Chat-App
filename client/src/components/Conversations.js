@@ -2,8 +2,13 @@ import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 import { useConversations } from '../contexts/ConversationsProvider'
 
-const Conversations = () => {
+const Conversations = ({ closeSideBar }) => {
   const { conversations, selectConversationIndex } = useConversations()
+
+  const handleClick = (index) => {
+    selectConversationIndex(index)
+    closeSideBar()
+  }
 
   return (
     <ListGroup variant='flush'>
@@ -12,7 +17,7 @@ const Conversations = () => {
           key={index}
           action
           active={conversation.selected}
-          onClick={() => selectConversationIndex(index)}
+          onClick={handleClick(index)}
         >
           {conversation.recipients
             .map((recipient) => recipient.name)
