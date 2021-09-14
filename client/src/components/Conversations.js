@@ -2,12 +2,12 @@ import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 import { useConversations } from '../contexts/ConversationsProvider'
 
-const Conversations = ({ closeSideBar }) => {
+export default function Conversations({ toggleSideBar }) {
   const { conversations, selectConversationIndex } = useConversations()
 
-  const handleClick = (index) => {
-    selectConversationIndex(index)
-    closeSideBar()
+  const handleClick = (ind) => {
+    selectConversationIndex(ind)
+    toggleSideBar()
   }
 
   return (
@@ -16,16 +16,12 @@ const Conversations = ({ closeSideBar }) => {
         <ListGroup.Item
           key={index}
           action
+          onClick={() => handleClick(index)}
           active={conversation.selected}
-          onClick={handleClick(index)}
         >
-          {conversation.recipients
-            .map((recipient) => recipient.name)
-            .join(', ')}
+          {conversation.recipients.map((r) => r.name).join(', ')}
         </ListGroup.Item>
       ))}
     </ListGroup>
   )
 }
-
-export default Conversations

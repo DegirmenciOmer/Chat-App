@@ -25,10 +25,11 @@ export default function Sidebar({ id }) {
   const [show, setShow] = useState(false)
 
   const toggleSideBar = () => setShow((prev) => !prev)
+  console.log({ show })
 
   return (
     <>
-      <Button className='menu-btn ' variant='primary' onClick={toggleSideBar}>
+      <Button className='menu-btngit' variant='primary' onClick={toggleSideBar}>
         Menu
       </Button>
       <Offcanvas
@@ -66,7 +67,7 @@ export default function Sidebar({ id }) {
                     You have no conversations yet
                   </p>
                 ) : (
-                  <Conversations closeSideBar={toggleSideBar} />
+                  <Conversations toggleSideBar={toggleSideBar} />
                 )}
               </Tab.Pane>
               <Tab.Pane eventKey={CONTACTS_KEY}>
