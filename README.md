@@ -31,4 +31,8 @@ A chat application which can be used not only for private messaging, but also as
 
 \$ git clone https://github.com/DegirmenciOmer/Chat-App.git
 
+ ## Reference
+ This project was initially coded along with (this tutorial)[https://www.youtube.com/watch?v=tBr-PybP_9c].
+
+
 
