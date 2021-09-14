@@ -46,8 +46,7 @@
 }
 
 .menu-btn{
-  /* writing-mode: vertical-r !important;
-  text-orientation: upright !important; */
-  text-orientation: upright !important;
-  width: 30px;
+  position: absolute;
+  top:9px;
+  left:9px;
 }
