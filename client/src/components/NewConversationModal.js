@@ -29,9 +29,11 @@ export default function NewConversationModal({ closeModal }) {
 
   return (
     <>
-      <Modal.Header closeButton>Create Conversation</Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handleSubmit}>
+      <Modal.Header closeButton>
+        <Modal.Title>Create Conversation</Modal.Title>
+      </Modal.Header>
+      <Form onSubmit={handleSubmit}>
+        <Modal.Body>
           {contacts.map((contact) => (
             <Form.Group controlId={contact.id} key={contact.id}>
               <Form.Check
@@ -42,9 +44,13 @@ export default function NewConversationModal({ closeModal }) {
               />
             </Form.Group>
           ))}
-          <Button type='submit'>Create</Button>
-        </Form>
-      </Modal.Body>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button disabled={selectedContactIds === 0} type='submit'>
+            Create
+          </Button>
+        </Modal.Footer>
+      </Form>
     </>
   )
 }

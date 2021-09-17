@@ -81,7 +81,17 @@ export default function Sidebar({ id }) {
             Your Id: <span className='text-muted'>{id}</span>
           </div>
           <Button onClick={() => setModalOpen(true)} className='rounded-0'>
-            New {activeKey === CONVERSATIONS_KEY ? 'Conversation' : 'Contact'}
+            {activeKey === CONVERSATIONS_KEY ? (
+              <span>
+                <i className='fa fa-comments '></i>
+                <span style={{ marginLeft: '10px' }}>New Conversation</span>
+              </span>
+            ) : (
+              <span>
+                <i className='fa fa-id-card '></i>
+                <span style={{ marginLeft: '10px' }}>New Contact</span>
+              </span>
+            )}
           </Button>
         </Tab.Container>
 

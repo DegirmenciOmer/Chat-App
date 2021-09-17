@@ -16,7 +16,7 @@ const Header = () => {
     >
       <Nav>
         <Button variant='outline-dark' onClick={toggleSidebar}>
-          Menu
+          <i className='fa fa-bars'></i>
         </Button>
       </Nav>
 
