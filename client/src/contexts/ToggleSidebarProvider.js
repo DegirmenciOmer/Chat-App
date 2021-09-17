@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
+import useLocalStorage from './../hooks/useLocalStorage'
 
 const ToggleSidebarContext = React.createContext()
 
@@ -7,7 +8,7 @@ export function useToggleSidebar() {
 }
 
 export function ToggleSidebarProvider({ children }) {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useLocalStorage('toggle', true)
 
   const toggleSidebar = () => setShow((prev) => !prev)
 

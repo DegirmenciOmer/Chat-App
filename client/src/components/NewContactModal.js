@@ -17,8 +17,8 @@ const NewContactModal = ({ closeModal }) => {
       <Modal.Header closeButton>
         <Modal.Title>Create Contact</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
+        <Modal.Body>
           <Form.Group>
             <Form.Label>Id</Form.Label>
             <Form.Control type='text' ref={idRef} required />
@@ -27,9 +27,11 @@ const NewContactModal = ({ closeModal }) => {
             <Form.Label>Name</Form.Label>
             <Form.Control type='text' ref={nameRef} required />
           </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
           <Button type='submit'>Create</Button>
-        </Form>
-      </Modal.Body>
+        </Modal.Footer>
+      </Form>
     </>
   )
 }

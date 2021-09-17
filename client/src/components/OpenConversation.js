@@ -31,7 +31,16 @@ export default function OpenConversation() {
   return (
     <div className='d-flex flex-column flex-grow-1'>
       <div className='flex-grow-1 overflow-auto'>
-        {selectedConversation.messages.length > 0 ? (
+        {selectedConversation.messages.length === 0 ? (
+          <div className='warning no-message d-flex align-items-center justify-content-center '>
+            <p>
+              Start a conversation with
+              {` ${selectedConversation.recipients
+                .map((r) => r.name)
+                .join(', ')}`}
+            </p>
+          </div>
+        ) : (
           selectedConversation.messages.map((message, index) => {
             const lastMessage =
               selectedConversation.messages.length - 1 === index
@@ -66,15 +75,6 @@ export default function OpenConversation() {
               </div>
             )
           })
-        ) : (
-          <div className='warning no-message d-flex align-items-center justify-content-center '>
-            <p>
-              Start a conversation with
-              {` ${selectedConversation.recipients
-                .map((r) => r.name)
-                .join(', ')}`}
-            </p>
-          </div>
         )}
       </div>
       <Form onSubmit={handleSubmit}>
@@ -87,7 +87,9 @@ export default function OpenConversation() {
               onChange={(e) => setText(e.target.value)}
               style={{ height: '75px', resize: 'none' }}
             />
-            <Button type='submit'>Send</Button>
+            <Button disabled={!text} style={{ fontSize: '25px' }} type='submit'>
+              <i className='fa fa-paper-plane'></i>
+            </Button>
           </InputGroup>
         </Form.Group>
       </Form>

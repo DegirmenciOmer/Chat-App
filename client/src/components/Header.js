@@ -16,13 +16,14 @@ const Header = () => {
     >
       <Nav>
         <Button variant='outline-dark' onClick={toggleSidebar}>
-          Menu
+          <i className='fa fa-bars'></i>
         </Button>
       </Nav>
-
-      <Nav>
-        {selectedConversation.recipients.map((recipient) => recipient.name)}
-      </Nav>
+      {selectedConversation && (
+        <Nav style={{ fontSize: '1.5em', fontWeight: '400' }}>
+          {selectedConversation.recipients.map((recipient) => recipient.name)}
+        </Nav>
+      )}
     </Navbar>
   )
 }
