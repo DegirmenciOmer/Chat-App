@@ -14,8 +14,6 @@ export default function Login({ onIdSubmit }) {
     onIdSubmit(uuidV4())
   }
 
-  //xs={12} sm={8} lg={4}
-
   return (
     <Container
       className='align-items-center d-flex justify-content-center'
@@ -38,7 +36,7 @@ export default function Login({ onIdSubmit }) {
           <Button className='w-50' type='submit'>
             <span>
               <i className='fa fa-sign-in-alt'></i>
-              <span>Loggin</span>
+              <span>Login</span>
             </span>
           </Button>
           <Button className='w-50' onClick={createNewId} variant='secondary'>
