@@ -6,35 +6,30 @@ import NewContactModal from './NewContactModal'
 import NewConversationModal from './NewConversationModal'
 import { useContacts } from '../contexts/ContactsProvider'
 import { useConversations } from '../contexts/ConversationsProvider'
+import { useToggleSidebar } from './../contexts/ToggleSidebarProvider'
 
 const CONVERSATIONS_KEY = 'conversations'
 const CONTACTS_KEY = 'contacts'
 
 export default function Sidebar({ id }) {
-  const [activeKey, setActiveKey] = useState(CONVERSATIONS_KEY)
+  const { contacts } = useContacts()
+  const { show, toggleSidebar } = useToggleSidebar()
+  const [activeKey, setActiveKey] = useState(
+    contacts.length === 0 ? CONTACTS_KEY : CONVERSATIONS_KEY
+  )
   const [modalOpen, setModalOpen] = useState(false)
 
-  const { contacts } = useContacts()
   const { conversations } = useConversations()
-  console.log(contacts)
 
   function closeModal() {
     setModalOpen(false)
   }
 
-  const [show, setShow] = useState(false)
-
-  const toggleSideBar = () => setShow((prev) => !prev)
-  console.log({ show })
-
   return (
     <>
-      <Button className='menu-btngit' variant='primary' onClick={toggleSideBar}>
-        Menu
-      </Button>
       <Offcanvas
         show={show}
-        onHide={toggleSideBar}
+        onHide={toggleSidebar}
         style={{ width: '350px' }}
         className='d-flex flex-column'
       >
@@ -67,7 +62,7 @@ export default function Sidebar({ id }) {
                     You have no conversations yet
                   </p>
                 ) : (
-                  <Conversations toggleSideBar={toggleSideBar} />
+                  <Conversations />
                 )}
               </Tab.Pane>
               <Tab.Pane eventKey={CONTACTS_KEY}>

@@ -37,17 +37,10 @@
   }
 }
 
-/* .left-tab-container{
-  border-right: #ced4da solid 1px !important;
-} */
-
 .warning{
-  color:red;
+  color:red!important;
 }
 
-.menu-btn{
-  /* writing-mode: vertical-r !important;
-  text-orientation: upright !important; */
-  text-orientation: upright !important;
-  width: 30px;
+.no-message{
+  height: 70vh!important;
 }

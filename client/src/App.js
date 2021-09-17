@@ -7,16 +7,19 @@ import Dashboard from './components/Dashboard'
 import { ContactsProvider } from './contexts/ContactsProvider'
 import { ConversationsProvider } from './contexts/ConversationsProvider'
 import { SocketProvider } from './contexts/SocketProvider'
+import { ToggleSidebarProvider } from './contexts/ToggleSidebarProvider'
 
 function App() {
   const [id, setId] = useLocalStorage('id', null)
   const dashboard = (
     <SocketProvider id={id}>
-      <ContactsProvider>
-        <ConversationsProvider id={id}>
-          <Dashboard id={id} />
-        </ConversationsProvider>
-      </ContactsProvider>
+      <ToggleSidebarProvider>
+        <ContactsProvider>
+          <ConversationsProvider id={id}>
+            <Dashboard id={id} />
+          </ConversationsProvider>
+        </ContactsProvider>
+      </ToggleSidebarProvider>
     </SocketProvider>
   )
   return id ? dashboard : <Login onIdSubmit={setId} />

@@ -1,13 +1,15 @@
 import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 import { useConversations } from '../contexts/ConversationsProvider'
+import { useToggleSidebar } from './../contexts/ToggleSidebarProvider'
 
-export default function Conversations({ toggleSideBar }) {
+export default function Conversations() {
   const { conversations, selectConversationIndex } = useConversations()
+  const { toggleSidebar } = useToggleSidebar()
 
   const handleClick = (ind) => {
     selectConversationIndex(ind)
-    toggleSideBar()
+    toggleSidebar()
   }
 
   return (

@@ -11,7 +11,6 @@ const NewContactModal = ({ closeModal }) => {
     e.preventDefault()
     createContact(idRef.current.value, nameRef.current.value)
     closeModal()
-    console.log('FormSubmit')
   }
   return (
     <>
