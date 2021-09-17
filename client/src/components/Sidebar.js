@@ -20,7 +20,6 @@ export default function Sidebar({ id }) {
   const [modalOpen, setModalOpen] = useState(false)
 
   const { conversations } = useConversations()
-  console.log(contacts)
 
   function closeModal() {
     setModalOpen(false)
