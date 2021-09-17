@@ -7,7 +7,6 @@ export default function Login({ onIdSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-
     onIdSubmit(idRef.current.value)
   }
 
@@ -37,7 +36,10 @@ export default function Login({ onIdSubmit }) {
         </Form.Group>
         <ButtonGroup className='w-100 ' aria-label='Basic example'>
           <Button className='w-50' type='submit'>
-            Login
+            <span>
+              <i className='fa fa-sign-in-alt'></i>
+              <span>Loggin</span>
+            </span>
           </Button>
           <Button className='w-50' onClick={createNewId} variant='secondary'>
             New Id
