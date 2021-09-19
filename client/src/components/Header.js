@@ -10,12 +10,12 @@ const Header = () => {
 
   return (
     <Navbar
-      style={{ height: '10vh' }}
-      bg='primary'
+      style={{ height: '10vh', color: 'white' }}
+      bg='dark'
       className='d-flex justify-content-between px-3'
     >
       <Nav>
-        <Button variant='outline-dark' onClick={toggleSidebar}>
+        <Button variant='dark' onClick={toggleSidebar}>
           <i className='fa fa-bars'></i>
         </Button>
       </Nav>

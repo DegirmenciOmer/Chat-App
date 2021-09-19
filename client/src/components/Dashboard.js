@@ -11,7 +11,7 @@ export default function Dashboard({ id }) {
     <>
       <Header />
 
-      <div className='d-flex' style={{ height: '90vh' }}>
+      <div className='gradient-bg d-flex' style={{ height: '90vh' }}>
         <Sidebar id={id} />
         {selectedConversation && <OpenConversation />}
       </div>
