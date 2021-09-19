@@ -7,7 +7,13 @@ const Contacts = () => {
   return (
     <ListGroup variant='flush'>
       {contacts.map((contact) => (
-        <ListGroup.Item key={contact.id}>{contact.name}</ListGroup.Item>
+        <ListGroup.Item key={contact.id}>
+          <i
+            style={{ fontSize: '21px', color: '#0d6efd' }}
+            className='fa fa-user-circle'
+          ></i>
+          {contact.name}
+        </ListGroup.Item>
       ))}
     </ListGroup>
   )

@@ -58,8 +58,9 @@ export default function OpenConversation() {
                   }`}
                 >
                   <div
-                    className={`rounded px-2 py-1 ${
-                      message.fromMe ? 'bg-primary text-white' : 'border'
+                    style={{ maxWidth: '75vw' }}
+                    className={`rounded px-2 py-1  ${
+                      message.fromMe ? 'text-white bg-secondary ' : 'bg-light'
                     }`}
                   >
                     {message.text}

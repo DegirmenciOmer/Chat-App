@@ -31,7 +31,7 @@ export default function Sidebar({ id }) {
         show={show}
         onHide={toggleSidebar}
         style={{ width: '350px' }}
-        className='d-flex flex-column'
+        className='gradient-bg d-flex flex-column'
       >
         <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
           <Offcanvas.Header as={Row} closeButton>
