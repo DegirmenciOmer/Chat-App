@@ -4,6 +4,7 @@ import Conversations from './Conversations'
 import Contacts from './Contacts'
 import NewContactModal from './NewContactModal'
 import NewConversationModal from './NewConversationModal'
+
 import { useContacts } from '../contexts/ContactsProvider'
 import { useConversations } from '../contexts/ConversationsProvider'
 import { useToggleSidebar } from './../contexts/ToggleSidebarProvider'
@@ -13,7 +14,7 @@ const CONTACTS_KEY = 'contacts'
 
 export default function Sidebar({ id }) {
   const { contacts } = useContacts()
-  const { show, toggleSidebar } = useToggleSidebar()
+  const { showSidebar, toggleSidebar } = useToggleSidebar()
   const [activeKey, setActiveKey] = useState(
     contacts.length === 0 ? CONTACTS_KEY : CONVERSATIONS_KEY
   )
@@ -28,7 +29,7 @@ export default function Sidebar({ id }) {
   return (
     <>
       <Offcanvas
-        show={show}
+        show={showSidebar}
         onHide={toggleSidebar}
         style={{ width: '350px' }}
         className='gradient-bg d-flex flex-column'
