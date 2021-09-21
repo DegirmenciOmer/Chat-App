@@ -12,11 +12,6 @@ export default function OpenConversation() {
   }, [])
 
   const { sendMessage, selectedConversation } = useConversations()
-  console.log(
-    selectedConversation.messages,
-    'selectedConversation.messages',
-    selectedConversation
-  )
 
   function handleSubmit(e) {
     e.preventDefault()
