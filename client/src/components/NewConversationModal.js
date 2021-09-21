@@ -11,6 +11,7 @@ export default function NewConversationModal({ closeModal }) {
   function handleSubmit(e) {
     e.preventDefault()
 
+    if (selectedContactIds.length === 0) return
     createConversation(selectedContactIds)
     closeModal()
   }
@@ -37,6 +38,7 @@ export default function NewConversationModal({ closeModal }) {
           {contacts.map((contact) => (
             <Form.Group controlId={contact.id} key={contact.id}>
               <Form.Check
+                required
                 type='checkbox'
                 value={selectedContactIds.includes(contact.id)}
                 label={contact.name}
