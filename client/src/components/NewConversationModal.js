@@ -38,7 +38,6 @@ export default function NewConversationModal({ closeModal }) {
           {contacts.map((contact) => (
             <Form.Group controlId={contact.id} key={contact.id}>
               <Form.Check
-                required
                 type='checkbox'
                 value={selectedContactIds.includes(contact.id)}
                 label={contact.name}
