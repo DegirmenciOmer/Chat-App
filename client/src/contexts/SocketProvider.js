@@ -3,8 +3,10 @@ import io from 'socket.io-client'
 
 const SocketContext = React.createContext()
 
-//const DEV_URL = 'http://localhost:5000/'
-const PRODUCTION_URL = 'https://dry-thicket-16746.herokuapp.com/'
+const URL =
+  process.env.REACT_APP_NODE_ENV === 'production'
+    ? process.env.REACT_APP_PRODUCTION_URL
+    : 'http://localhost:5000/'
 
 export function useSocket() {
   return useContext(SocketContext)
@@ -14,7 +16,7 @@ export function SocketProvider({ id, children }) {
   const [socket, setSocket] = useState()
 
   useEffect(() => {
-    const newSocket = io(PRODUCTION_URL, { query: { id } })
+    const newSocket = io(URL, { query: { id } })
 
     setSocket(newSocket)
 
