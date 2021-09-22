@@ -5,7 +5,7 @@ const SocketContext = React.createContext()
 
 const URL =
   process.env.REACT_APP_NODE_ENV === 'production'
-    ? process.env.REACT_APP_PRODUCTION_URL
+    ? 'https://dry-thicket-16746.herokuapp.com/'
     : 'http://localhost:5000/'
 
 export function useSocket() {
