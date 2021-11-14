@@ -63,14 +63,14 @@ export default function Sidebar({ id }) {
                     You need to add contacts first.
                   </p>
                 ) : conversations.length === 0 ? (
-                  <>
-                    <p bg='warning' className='warning text-center'>
-                      You have no conversations yet.
+                  <div className='d-flex flex-column justify-content-center align-items-center'>
+                    <p className='warning text-center'>
+                      You have no conversations yet
                     </p>
                     <Button onClick={() => setModalOpen(true)} variant='link'>
                       New Conversation
                     </Button>
-                  </>
+                  </div>
                 ) : (
                   <Conversations />
                 )}
