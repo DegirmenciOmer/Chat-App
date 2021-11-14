@@ -15,7 +15,7 @@ export default function Login({ onIdSubmit }) {
   }
 
   return (
-    <Container className='align-items-center d-flex justify-content-center'>
+    <Container className='vh-100 align-items-center d-flex justify-content-center'>
       <Form
         onSubmit={handleSubmit}
         md='8'

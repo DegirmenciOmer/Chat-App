@@ -15,7 +15,11 @@ const Header = () => {
       className='d-flex justify-content-between px-3'
     >
       <Nav>
-        <Button variant='dark' onClick={toggleSidebar}>
+        <Button
+          variant='link'
+          onClick={toggleSidebar}
+          style={{ fontSize: '1.7em', color: '#fff' }}
+        >
           <i className='fa fa-bars'></i>
         </Button>
       </Nav>

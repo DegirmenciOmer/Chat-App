@@ -11,7 +11,10 @@ export default function NewConversationModal({ closeModal }) {
   function handleSubmit(e) {
     e.preventDefault()
 
-    if (selectedContactIds.length === 0) return
+    const alreadyExists =
+      selectedContactIds.length === 1 &&
+      selectedContactIds.find((selectedId) => selectedId.recipients[0].id === e)
+    if (selectedContactIds.length === 0 || alreadyExists) return
     createConversation(selectedContactIds)
     closeModal()
   }
