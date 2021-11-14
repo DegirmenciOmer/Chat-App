@@ -1,40 +1,36 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { ListGroup } from 'react-bootstrap'
 import { useContacts } from '../contexts/ContactsProvider'
 import { useConversations } from '../contexts/ConversationsProvider'
 import { useToggleSidebar } from '../contexts/ToggleSidebarProvider'
 
 const Contacts = () => {
-  const { createConversation, conversations } = useConversations()
+  const { createConversation, conversations, selectConversationIndex } =
+    useConversations()
   const { contacts } = useContacts()
   const { toggleSidebar } = useToggleSidebar()
 
-  const newConversationRef = useRef()
-
-  useEffect(() => {
-    //newConversationRef.addEventListener('click', startConversation)
-    console.log(newConversationRef.current.value)
-    return () => {}
-  }, [])
-
-  const startConversation = (id) => {
+  const startConversation = (id, index) => {
     const alreadyExists = conversations.find(
-      (conversation) => conversation.recipients[0].id === id
+      (conversation) =>
+        conversation.recipients.length === 1 &&
+        conversation.recipients[0].id === id
     )
 
+    if (alreadyExists && alreadyExists.recipients[0].id === id) {
+      selectConversationIndex(index)
+    } else {
+      createConversation([id])
+    }
     toggleSidebar()
-    if (alreadyExists) return
-    createConversation([id])
   }
 
-  console.log({ conversations })
   return (
     <ListGroup variant='flush'>
-      {contacts.map((contact) => (
+      {contacts.map((contact, index) => (
         <ListGroup.Item
           key={contact.id}
-          ref={newConversationRef}
-          onClick={() => startConversation(contact.id)}
+          onClick={() => startConversation(contact.id, index)}
         >
           <i
             style={{ fontSize: '21px', color: '#0d6efd' }}

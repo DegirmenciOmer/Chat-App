@@ -58,10 +58,19 @@ export default function Sidebar({ id }) {
           <Offcanvas.Body>
             <Tab.Content className='left-tab-container border-right overflow-auto flex-grow-1'>
               <Tab.Pane eventKey={CONVERSATIONS_KEY}>
-                {conversations.length === 0 ? (
+                {contacts.length === 0 ? (
                   <p bg='warning' className='warning text-center'>
-                    You have no conversations yet
+                    You need to add contacts first.
                   </p>
+                ) : conversations.length === 0 ? (
+                  <>
+                    <p bg='warning' className='warning text-center'>
+                      You have no conversations yet.
+                    </p>
+                    <Button onClick={() => setModalOpen(true)} variant='link'>
+                      New Conversation
+                    </Button>
+                  </>
                 ) : (
                   <Conversations />
                 )}
@@ -70,9 +79,14 @@ export default function Sidebar({ id }) {
                 {contacts.length > 0 ? (
                   <Contacts />
                 ) : (
-                  <p className='warning text-center'>
-                    You have no contacts yet
-                  </p>
+                  <div className='d-flex flex-column justify-content-center align-items-center'>
+                    <p className='warning text-center'>
+                      You have no contacts yet
+                    </p>
+                    <Button onClick={() => setModalOpen(true)} variant='link'>
+                      New Contact
+                    </Button>
+                  </div>
                 )}
               </Tab.Pane>
             </Tab.Content>
