@@ -1,5 +1,7 @@
 # Chat-App
 
+## Live Site: https://fun-chat-omer.netlify.app
+
 ## General Info
 A chat application which can be used not only for private messaging, but also as a group chat. It doesn't require a phone number, you can generate a unique ID instead to get started with the application. All you need to do is add your friends into your contact list with their IDs and enjoy this cool chat! 😎
 
