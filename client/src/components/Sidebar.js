@@ -92,8 +92,20 @@ export default function Sidebar({ id }) {
             </Tab.Content>
           </Offcanvas.Body>
 
-          <div className='p-2 border-top border-right small'>
-            Your Id: <span className='text-muted'>{id}</span>
+          <div className='py-2 px-0 border-top border-right small d-flex gap-2 align-items-center'>
+            Your Id:
+            <span className='text-muted'>{id}</span>
+            <span>
+              <Button
+                onClick={() => {
+                  navigator.clipboard.writeText(id)
+                }}
+                className='p-0'
+                variant='link'
+              >
+                <i className='fa fa-copy '></i>
+              </Button>
+            </span>
           </div>
           <Button onClick={() => setModalOpen(true)} className='rounded-0'>
             {activeKey === CONVERSATIONS_KEY ? (
