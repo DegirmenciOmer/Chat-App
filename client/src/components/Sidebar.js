@@ -19,6 +19,7 @@ export default function Sidebar({ id }) {
     contacts.length === 0 ? CONTACTS_KEY : CONVERSATIONS_KEY
   )
   const [modalOpen, setModalOpen] = useState(false)
+  const [copyIcon, setCopyIcon] = useState(<i className='fa fa-copy '></i>)
 
   const { conversations } = useConversations()
 
@@ -99,11 +100,12 @@ export default function Sidebar({ id }) {
               <Button
                 onClick={() => {
                   navigator.clipboard.writeText(id)
+                  setCopyIcon(<i className='fa fa-check '></i>)
                 }}
                 className='p-0'
                 variant='link'
               >
-                <i className='fa fa-copy '></i>
+                {copyIcon}
               </Button>
             </span>
           </div>
